@@ -7,9 +7,12 @@
     "build": "remix build",
     "dev": "remix dev --manual",
     "start": "remix-serve ./build/index.js",
-    "typecheck": "tsc"
+    "typecheck": "tsc",
+    "seed": "bun prisma/seed.ts",
+    "reset": "bun prisma/reset.ts"
   },
   "dependencies": {
+    "@prisma/client": "5.6.0",
     "@remix-run/css-bundle": "^2.3.1",
     "@remix-run/node": "^2.3.1",
     "@remix-run/react": "^2.3.1",
@@ -19,12 +22,21 @@
     "react-dom": "^18.2.0"
   },
   "devDependencies": {
+    "@bleed-believer/path-alias": "^0.15.2",
     "@remix-run/dev": "^2.3.1",
     "@remix-run/eslint-config": "^2.3.1",
+    "@types/bcryptjs": "^2.4.2",
+    "@types/node": "^20.10.0",
     "@types/react": "^18.2.20",
     "@types/react-dom": "^18.2.7",
+    "bcryptjs": "^2.4.3",
+    "clsx": "^2.0.0",
     "eslint": "^8.38.0",
-    "typescript": "^5.1.6"
+    "prisma": "^5.6.0",
+    "tailwindcss": "^3.3.3",
+    "ts-node": "^10.9.1",
+    "typescript": "^5.1.6",
+    "zod": "^3.22.4"
   },
   "engines": {
     "node": ">=18.0.0"

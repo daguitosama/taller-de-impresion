@@ -1,38 +1,44 @@
-# Welcome to Remix!
+# Como correr
+Requisitos: tener internet en la máquina!
 
-- [Remix Docs](https://remix.run/docs)
+Paso 1: Instalar
+Tener nodejs instalado https://nodejs.org/en/download.
+Una ves se tiene nodejs, ir a la carpeta del proyecto en la consola y ejecutar el siguiente comando: npm install.
+ (crea las dependencias , node_modules/)
 
-## Development
+Paso 2: Generar el cliente de Prisma para la base de datos
+Tienendo ya las dependencias instaladas correr el siguiente comando: npx prisma generate.
 
-From your terminal:
+Paso 3: correr
+Teniendo hechos los pasos anteriores ejecutar: npm run dev.
 
-```sh
-npm run dev
-```
 
-This starts your app in development mode, rebuilding assets on file changes.
+# Usuarios de prueba
+name: admin, 
+password: cafesito,
+role: admin,
 
-## Deployment
 
-First, build your app for production:
 
-```sh
-npm run build
-```
+## Referencias
+# HTTP
+https://developer.mozilla.org/en-US/docs/Web/HTTP
 
-Then run the app in production mode:
+## URL
+https://developer.mozilla.org/en-US/docs/Learn/Common_questions/Web_mechanics/What_is_a_URL
+****
+## Remix
+https://remix.run/docs/en/main#remix-docs
+- remix routes system https://remix.run/docs/en/main/discussion/routes
 
-```sh
-npm start
-```
+## Prisma (db)
+https://www.prisma.io/docs/getting-started/quickstart
 
-Now you'll need to pick a host to deploy it to.
+## Forms
+- https://developer.mozilla.org/en-US/docs/Web/HTML/Element/form
+# Request
+- https://developer.mozilla.org/en-US/docs/Web/API/Request
 
-### DIY
-
-If you're familiar with deploying node applications, the built-in Remix app server is production-ready.
-
-Make sure to deploy the output of `remix build`
-
-- `build/`
-- `public/build/`
+## Project setup
+- descargar el projecto
+- installar las dependencias
