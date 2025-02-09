@@ -1,45 +1,16 @@
-import { NavLink, Outlet, useLoaderData } from "@remix-run/react";
-import { LoaderFunctionArgs } from "@remix-run/node";
-import { get_session, redirect_if_not_authorized } from "~/util/auth.server";
-import { json } from "@remix-run/node";
-import { db } from "db";
-import { AppLink } from "~/types/app";
-import { LogoutBtn } from "./logout";
+import { NavLink, Outlet } from "@remix-run/react";
 import clsx from "clsx";
+import { AppLink } from "~/types/app";
 
-export async function loader({ request }: LoaderFunctionArgs) {
-    const redirection = await redirect_if_not_authorized(request, ["admin", "dependiente"]);
-    if (redirection) {
-        return redirection;
-    }
-
-    const session = await get_session(request);
-    if (!session) {
-        throw new Error("No session found");
-    }
-    //
-    const user = await db.user.findFirst({
-        where: {
-            id: session.userId,
-        },
-    });
-
-    if (!user) {
-        throw new Error("No user found");
-    }
-
-    return json({
-        user: { ...user, password_hash: null },
-    });
-}
 export default function AdminLayout() {
     const ADMIN_APP_LINKS: AppLink[] = [
         {
             id: "0",
-            route: "/dependiente/documents",
+            route: "/documents",
             label: "Documentos",
         },
     ];
+
     return (
         <div className='min-h-screen flex'>
             {/* nav sidebar */}
@@ -58,16 +29,11 @@ export default function AdminLayout() {
 }
 
 function AdminAppSideBar({ links }: { links: AppLink[] }) {
-    const loaderData = useLoaderData<typeof loader>();
-    if (!loaderData.user.name) {
-        throw new Error("No user name found");
-    }
-    const firstLetter = loaderData.user.name.slice(0, 1);
     return (
         <div className='h-full px-[24px] relative'>
             {/* logo */}
             <div className='py-[20px] px-[10px]'>
-                <p className='font-medium text-sm  leading-none'>Taller, dependiente area</p>
+                <p className='font-medium text-sm  leading-none'>Taller, admin area</p>
             </div>
             {/* menu links */}
             <div className='mt-[16px]'>
@@ -81,10 +47,6 @@ function AdminAppSideBar({ links }: { links: AppLink[] }) {
                         );
                     })}
                 </ul>
-            </div>
-            {/* user options */}
-            <div className='flex gap2'>
-                <LogoutBtn />
             </div>
         </div>
     );

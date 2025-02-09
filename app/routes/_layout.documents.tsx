@@ -1,14 +1,8 @@
 import { DataFunctionArgs, LoaderFunctionArgs, json } from "@remix-run/node";
 import { useLoaderData } from "@remix-run/react";
 import { db } from "db";
-import { redirect_if_not_authorized } from "~/util/auth.server";
 
 export async function loader({ request }: LoaderFunctionArgs) {
-    const redirection = await redirect_if_not_authorized(request, "admin"); // o ["admin", "dependiente"] si los dos pueden usar esta pagina
-    if (redirection) {
-        return redirection;
-    }
-
     const documents = await db.document.findMany();
     return json({
         documents,
